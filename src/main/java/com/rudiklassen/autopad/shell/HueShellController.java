@@ -19,11 +19,9 @@ import java.util.concurrent.Executors;
 @ShellComponent
 public class HueShellController {
 
-    private static Logger LOG = LoggerFactory.getLogger(HueShellController.class);
-
     public static final String STRINGLIST_SEPERATOR = ", ";
     public static final String YES_CHAR = "Y";
-
+    private static Logger LOG = LoggerFactory.getLogger(HueShellController.class);
     private HueControl hueControl;
 
 
@@ -59,16 +57,13 @@ public class HueShellController {
 
     @ShellMethod("...")
     public String switchSocket(
-            @ShellOption(help = "433Mhz radio socket Id [A, B, C, D]") String socketId, @ShellOption(help = "[y,n]") String on) {
+            @ShellOption(help = "433Mhz radio socket Id [1, 2, 3, 4]") String socketId, @ShellOption(help = "[y,n]") String on) throws IOException, InterruptedException {
         int onoff = getTrueFalse(on) ? 1 : 0;
-        try {
-            executeShellCommand("./piRCSwitchControl " + socketId + " " + onoff);
-            return String.format("Socket %s switched to %s", socketId, on);
-        } catch (IOException e) {
-            return String.format("The file %s could not be found or read", "piRCSwitchControl");
-        } catch (InterruptedException e) {
-            return String.format("An error occurred while executing the command");
-        }
+        long socket = Long.valueOf(socketId);
+        
+        executeShellCommand("./piRCSwitchControl " + socket + " " + onoff);
+        return String.format("Socket %s switched to %s", socketId, on);
+
     }
 
     void executeShellCommand(String command) throws IOException, InterruptedException {
