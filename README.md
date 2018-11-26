@@ -1,0 +1,1 @@
+## Macropad control for Philips Hue lamps and 433Mhz radio sockets
