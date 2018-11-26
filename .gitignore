@@ -1,8 +1,45 @@
-*.ipr
-*.iml
-*.iws
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# build dirs
+out
+target
+build
 .gradle
-*/build/*
-*.idea*
-*/out/*
-keycloak/keycloak-3\.4\.3\.Final/standalone/log/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# IntelliJ
+*.ipr
+*.iws
+.shelf
+.ideaDataSources
+.idea/sonarlint
+.idea/workspace.xml
+.idea/usage.statistics.xml
+.idea/tasks.xml
+.idea/shelf
+# ignored IntelliJ-files for Gradle based projects
+*.iml
+.idea/modules.xml
+.idea/gradle.xml
+
+# temp
+*.*~
+
+# Mac OS X
+.DS_Store
+
+# JRebel
+**/rebel.xml
+
+# Generated sources
+**/src/main/generated
