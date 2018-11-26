@@ -1,0 +1,3 @@
+## To compile the C Programm run:
+## sudo g++ -DRPI /home/pi/433Utils/rc-switch/RCSwitch.cpp piRCSwitchControl.cpp -o piRCSwitchControl -lwiringPi
+
