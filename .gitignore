@@ -1,0 +1,8 @@
+*.ipr
+*.iml
+*.iws
+.gradle
+*/build/*
+*.idea*
+*/out/*
+keycloak/keycloak-3\.4\.3\.Final/standalone/log/
