@@ -19,16 +19,23 @@ import java.util.concurrent.Executors;
 @ShellComponent
 public class HueShellController {
 
+    private static Logger LOG = LoggerFactory.getLogger(HueShellController.class);
+
+    public static final int DIM_LIGHTS_MIN_STEPSIZE = 1;
+    public static final int DIM_LIGHTS_MAX_STEPSIZE = 5;
     public static final String STRINGLIST_SEPERATOR = ", ";
     public static final String YES_CHAR = "Y";
-    private static Logger LOG = LoggerFactory.getLogger(HueShellController.class);
-    private HueControl hueControl;
 
+    private HueControl hueControl;
 
     @Autowired
     public HueShellController(HueControl hueControl) {
-
         this.hueControl = hueControl;
+    }
+
+    @ShellMethod("Outputs the Ip address of the connected hue and user used")
+    public String printBridgeInfo() {
+        return hueControl.printInfo();
     }
 
     @ShellMethod("Return all registered Light Ids of the connected Hue Bridge")
@@ -55,16 +62,29 @@ public class HueShellController {
         hueControl.switchAllLights(getTrueFalse(on));
     }
 
-    @ShellMethod("...")
+    @ShellMethod("Switches a radio socket on or off")
     public String switchSocket(
-            @ShellOption(help = "433Mhz radio socket Id [1, 2, 3, 4]") String socketId, @ShellOption(help = "[y,n]") String on) throws IOException, InterruptedException {
+            @ShellOption(help = "433Mhz radio socket Id [1, 2, 3, 4]") String socketId, //
+            @ShellOption(help = "[y,n]") String on//
+    ) throws IOException, InterruptedException {
         int onoff = getTrueFalse(on) ? 1 : 0;
         long socket = Long.valueOf(socketId);
-        
+
         executeShellCommand("./piRCSwitchControl " + socket + " " + onoff);
         return String.format("Socket %s switched to %s", socketId, on);
-
     }
+
+    @ShellMethod("Dim all Lights to a specified level")
+    public String dimLights(@ShellOption(help = "Step[1 = 20%, 2 = 40, 3 = 60%, 4 = 80%, 5 = 100%]") String step) {
+        int stepSize = Integer.valueOf(step);
+        if (stepSize > 5 || stepSize < 1) {
+            return String.format("Stepsize was not accepted. Choose a number between %s and %s", DIM_LIGHTS_MIN_STEPSIZE, DIM_LIGHTS_MAX_STEPSIZE);
+        }
+
+        hueControl.dimLights(stepSizeToScalar(stepSize));
+        return String.format("Set Dimlevel to %s", stepSize);
+    }
+
 
     void executeShellCommand(String command) throws IOException, InterruptedException {
         Process process;
@@ -97,6 +117,27 @@ public class HueShellController {
         }
 
         return result;
+    }
+
+    /**
+     * Translate the Stepsie to a Scalar from 1 to 254
+     *
+     * @return
+     */
+    private int stepSizeToScalar(int stepSize) {
+        switch (stepSize) {
+            case 1:
+                return 50;
+            case 2:
+                return 100;
+            case 3:
+                return 150;
+            case 4:
+                return 200;
+
+            default:
+                return 254;
+        }
     }
 
 }

@@ -22,6 +22,9 @@ public class HueRestService {
 
     private static Logger LOG = LoggerFactory.getLogger(HueRestService.class);
 
+    private static final long MAX_BRIGHTNESS = 254;
+    private static final long MIN_BRIGHTNESS = 1;
+
     @Value("${hue.config.usertoken}")
     public String userToken;
 
@@ -47,7 +50,6 @@ public class HueRestService {
      * Switches the given light id on or off
      */
     public void switchLight(long lightId, boolean on) {
-        //todo rukl build builder for all requests
         LightSwitchRequest lightSwitchRequest = new LightSwitchRequest();
         lightSwitchRequest.setOn(on);
 
@@ -56,10 +58,25 @@ public class HueRestService {
         LOG.info(String.format("Switch light %s to %s", lightId, on));
     }
 
+    /**
+     * Brightness of the light. This is a scale from the minimum brightness the light is capable of, 1, to the maximum capable brightness, 254.
+     */
+    public void dimLight(long lightId, long brightness) {
+        if (brightness < 1 || brightness > 254) {
+            throw new IllegalStateException(String.format("Select a brightness level between %s and %s", MIN_BRIGHTNESS, MAX_BRIGHTNESS));
+        }
+
+        LightBrightnessRequest lightBrightnessRequest = new LightBrightnessRequest();
+        lightBrightnessRequest.setBri(brightness);
+
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.put(getHueBridgeUriWithUserToken() + "/lights/" + lightId + "/state", lightBrightnessRequest);
+        LOG.info(String.format("Switch brightness of light %s to %s", lightId, brightness));
+    }
+
     String getHueBridgeUriWithUserToken() {
         return "http://" + hueIp + "/api/" + userToken;
     }
-
 
     List<Long> stringSetToLongList(Set<String> strings) {
         ArrayList<Long> longs = new ArrayList<>();
@@ -68,5 +85,4 @@ public class HueRestService {
         }
         return longs;
     }
-
 }

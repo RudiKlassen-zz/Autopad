@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Provide a range of functions to control the Philips Hue lamps.
+ */
 @Service
 public class HueControl {
 
@@ -24,6 +27,10 @@ public class HueControl {
 
     public List<Long> getAllLightIds() throws IOException {
         return hueRestService.getAllLightIds();
+    }
+
+    public String printInfo() {
+        return String.format("User %s Hue Bridge Ip %s", hueRestService.userToken, hueRestService.hueIp);
     }
 
     /**
@@ -59,6 +66,29 @@ public class HueControl {
 
             for (Long id : allLightIds) {
                 switchLight(id, on);
+            }
+        } catch (IOException e) {
+            LOG.error("An error has occurred when recalling the registered lights");
+        }
+    }
+
+    /**
+     * Dim the Brightness of a given light Id. This is a scale from the minimum brightness the light is capable of, 1, to the maximum capable brightness, 254.
+     */
+    public void dimLight(long lightId, long brightness) {
+        hueRestService.dimLight(lightId, brightness);
+    }
+
+    /**
+     * Dim all Lights to specified level.
+     */
+    public void dimLights(long stepSize) {
+
+        try {
+            List<Long> allLightIds = getAllLightIds();
+
+            for (Long id : allLightIds) {
+                dimLight(id, stepSize);
             }
         } catch (IOException e) {
             LOG.error("An error has occurred when recalling the registered lights");
