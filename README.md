@@ -29,3 +29,5 @@ The macropad can trigger commands by sending corresponding strings to the Raspbe
 ## Executable commands
 
 The commands implemented up to now can be called after starting the JAR by typing help (or looking at _HueShellController.java_)
+
+*If you have any questions, just shoot me a mail*
