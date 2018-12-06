@@ -28,6 +28,14 @@ The macropad can trigger commands by sending corresponding strings to the Raspbe
 
 ## Executable commands
 
-The commands implemented up to now can be called after starting the JAR by typing help (or looking at _HueShellController.java_)
+The commands implemented up to now can be called after starting the JAR by typing 
+
+_help_ 
+
+(or looking at _HueShellController.java_). And the documentation of a command(for example _dim-lights_) and its parameters can be viewed as follows
+
+_help dim-lights_
+
+
 
 *If you have any questions, just shoot me a mail*
