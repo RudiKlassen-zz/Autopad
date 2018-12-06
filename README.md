@@ -22,9 +22,9 @@ In order to be able to activate and deactivate the individual sockets by radio, 
 
 _sudo g++ -DRPI /home/pi/433Utils/rc-switch/RCSwitch.cpp piRCSwitchControl.cpp -o piRCSwitchControl -lwiringPi_
 
-### Konfiguration des Makropads
+### Macropad (Programmable keyboard)
 
-The macropad can trigger commands by sending corresponding strings to the RaspberryPI or the executing terminal. I used https://github.com/qmk/qmk_firmware to create the keymap and macros on my pad. As macro pad I use the Chocopad of Keeb.io. But it also works with any other programmable keyboard. It is important that the keyboard is connected to the RaspberryPI. 
+The macropad can trigger commands by sending corresponding strings to the RaspberryPI or the executing terminal. I used https://github.com/qmk/qmk_firmware to create the keymap and macros on my pad. As macropad I use the _Chocopad_ of https://keeb.io But it also works with any other programmable keyboard. It is important that the keyboard is connected to the RaspberryPI. 
 
 ## Executable commands
 
