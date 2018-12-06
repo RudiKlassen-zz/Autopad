@@ -36,7 +36,5 @@ _help_
 
 _help dim-lights_
 
-
-
 ### Need Help?
 just shoot me a mail. I will reply as soon as I have time.
