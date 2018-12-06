@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.function.Consumer;
 
- class StreamGobbler implements Runnable {
+class StreamGobbler implements Runnable {
     private InputStream inputStream;
     private Consumer<String> consumer;
 

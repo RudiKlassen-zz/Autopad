@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 	  printf("Socket is not available");
 	}
 
-	//Switch Socket on or off
+	//Switch Socket
     if (atoi(argv[2]) == 1) {
         piSwitch.send(currentSocketOn, 24);
         printf("Turn on Port %i - Signal %i \n\r", socket, currentSocketOn);

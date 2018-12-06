@@ -120,9 +120,7 @@ public class HueShellController {
     }
 
     /**
-     * Translate the Stepsie to a Scalar from 1 to 254
-     *
-     * @return
+     * Translate the Stepsie to a Scalar from 1 to 254 and returns thes result.
      */
     private int stepSizeToScalar(int stepSize) {
         switch (stepSize) {

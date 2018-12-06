@@ -92,7 +92,7 @@ public class HueControlTest {
         List<Long> ids = Arrays.asList(1L, 2L, 3L);
         when(hueRestServiceMock.getAllLightIds()).thenReturn(ids);
 
-        testSubject.switchAllLights( on);
+        testSubject.switchAllLights(on);
         verify(hueRestServiceMock).switchLight(1L, true);
         verify(hueRestServiceMock).switchLight(2L, true);
         verify(hueRestServiceMock).switchLight(3L, true);
@@ -105,7 +105,7 @@ public class HueControlTest {
         List<Long> ids = Arrays.asList(1L, 2L, 3L);
         when(hueRestServiceMock.getAllLightIds()).thenReturn(ids);
 
-        testSubject.switchAllLights( on);
+        testSubject.switchAllLights(on);
         verify(hueRestServiceMock).switchLight(1L, false);
         verify(hueRestServiceMock).switchLight(2L, false);
         verify(hueRestServiceMock).switchLight(3L, false);
@@ -118,7 +118,7 @@ public class HueControlTest {
         List<Long> ids = Arrays.asList(1L, 2L, 3L);
         when(hueRestServiceMock.getAllLightIds()).thenThrow(new IOException());
 
-        testSubject.switchAllLights( on);
+        testSubject.switchAllLights(on);
         verify(hueRestServiceMock, never()).switchLight(anyLong(), anyBoolean());
     }
 }
