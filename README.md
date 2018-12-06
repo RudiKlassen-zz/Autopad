@@ -38,4 +38,5 @@ _help dim-lights_
 
 
 
-*If you have any questions, just shoot me a mail*
+### Need Help?
+just shoot me a mail. I will reply as soon as I have time.
