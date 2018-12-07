@@ -12,7 +12,7 @@ To communicate with the Hue Bridge, a new user on the Withelist must first be ad
 
 Alternatively, these properties can also be set when starting the jar like that.
 
-_java -jar autopad-X.Y.Z.jar --hue.config.bridgeip=192.168.4.2 --hue.config.usertoken=7h1515n07my70k3neb0a5ea7997a99a_
+_java -jar autopad-X.Y.Z.jar --hue.config.bridgeip=192.168.4.2 --hue.config.usertoken=7h1515n07myr34l70k3nbu7ju574n3x4mpl3_
 
 ### Radio sockets Control system
 
@@ -35,8 +35,6 @@ _help_
 (or looking at _HueShellController.java_). And the documentation of a command(for example _dim-lights_) and its parameters can be viewed as follows
 
 _help dim-lights_
-
-
 
 ### Need Help?
 just shoot me a mail. I will reply as soon as I have time.
