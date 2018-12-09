@@ -8,7 +8,7 @@ Autopad is a small terminal program that runs on a RaspberryPI to control radio 
 
 ### Hue Bridge Configuration
 
-To communicate with the Hue Bridge, a new user on the Withelist must first be added to the Bridge (for more information, see https://developers.meethue.com). A token will then be generated, which is required for REST authentication. Both the IP of the bridge in the local network and the token must be adjusted in the _application.properties_. 
+To communicate with the Hue Bridge, a new user on the whitelist must first be added to the Bridge (for more information, see https://developers.meethue.com). A token will then be generated, which is required for REST authentication. Both the IP of the bridge in the local network and the token must be adjusted in the _application.properties_. 
 
 Alternatively, these properties can also be set when starting the jar like that.
 
