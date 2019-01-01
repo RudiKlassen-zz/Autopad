@@ -1,5 +1,8 @@
 ## Autopad
 
+![Hardware i use](/previewReadme.jpg)
+
+
 ### Macropad control for Philips Hue Bridge and 433Mhz radio sockets
 
 Autopad is a small terminal program that runs on a RaspberryPI to control radio sockets and send commands to the Philips Hue Bridge. The commands are sent via string macros from a programmable keyboard to the terminal. The terminal is a Spring Shell application that can be executed on a Raspberry PI. A separate CPP program is used to control the radio sockets. 
